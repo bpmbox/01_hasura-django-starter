@@ -1,0 +1,64 @@
+## .github/workflows/go-sls.yml
+
+name: go-sls
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: set up
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.13
+      id: go
+
+    - name: checkout
+      uses: actions/checkout@v1
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+
+    - name: Install Dependencies
+      run: |
+        npm install serverless -g
+        npm install
+    #- name: build
+    #  run: go build -ldflags="-s -w" -o bin/handler handler/main.go
+
+    - name: configure aws
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-northeast-1
+    - name: Install Dependencies
+      run: |
+        npm install
+        npm install serverless -g
+        #sls plugin install -n serverless-python-requirements
+        #pip install django
+        #sls plugin install -n serverless-domain-manager
+        sls plugin install -n serverless-python-requirements
+        #django-admin startproject django_sls_helloworld .
+        #sls plugin install -n serverless-wsgi
+        #npm install --save-dev serverless-offline
+        export API_BASE_PATH="/dev"
+        #(cd front && npm install && npm run generate)
+    #- name: get env
+    #  run: |
+    #    aws s3 cp s3://path/to/env.yml .
+
+    - name: Deploy to Lambda
+      run: sls deploy --stage dev
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        API_BASE_PATH: "/dev"
+        #SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

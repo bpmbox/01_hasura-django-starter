@@ -1,0 +1,45 @@
+service: djangofastapi
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  region: ap-northeast-1
+  runtime: python3.8
+  apiGateway:
+    binaryMediaTypes:
+      - '*/*'
+  environment:
+    API_BASE_PATH: ${env:API_BASE_PATH, ""}
+
+functions:
+  hello:
+    handler: mysite.asgi.handler
+    layers:
+      - Ref: PythonRequirementsLambdaLayer
+    events:
+      - http:
+          path: /
+          method: ANY
+      - http:
+          path: /{path+}
+          method: ANY
+
+package:
+  patterns:
+    - '!**' # すべてのファイルをexclude
+    - 'mysite/**'
+    - 'polls/**'
+    - 'manage.py'
+    - 'staticfiles/**'
+    - 'db.sqlite3'
+    - 'front_dist/**' # nuxtのビルド結果をinclude    
+    
+
+custom:
+  pythonRequirements:
+    dockerizePip: true # deploy時のパッケージングの際にpythonライブラリのビルドをdockerで行う設定
+    layer: true # レイヤーを作成する
+
+plugins:
+  - serverless-python-requirements
+  #- serverless-domain-manager
