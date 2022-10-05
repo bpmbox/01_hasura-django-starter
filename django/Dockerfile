@@ -12,8 +12,16 @@ RUN pip install --upgrade pip && pip install 'django<4' \
         'requests<3' \
         'uuid<2' \
         'drf-yasg' \
-        'django-filter'
+        'django-filter' \
+        'fastapi' \
+        'pydantic' \
+        'uvicorn' \
+        'uvloop' \
+        'whitenoise' \
+        'django-stubs' \
+        'mangum'
+
 WORKDIR /code
 ADD ./entrypoint.sh /entrypoint.sh
 RUN chmod a+x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["uvicorn", "app.asgi:fastapp", "--host", "0.0.0.0", "--port", "8000"]
