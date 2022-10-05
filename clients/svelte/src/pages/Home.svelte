@@ -67,7 +67,7 @@
         }
         variable["message"] = message;
         const accessToken = await token();
-        const request = await fetch("http://localhost:8080/v1/graphql", {
+        const request = await fetch("https://8080-mrgba-hasuradjangostar-j2rinyyueg0.ws-us67.gitpod.io/v1/graphql", {
             method: "POST",
             headers: { "Content-Type": "application/json", Accept: "application/json", Authorization: "Bearer " + accessToken, },
             body: JSON.stringify({ query: query, variables: variable })

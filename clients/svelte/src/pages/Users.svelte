@@ -49,7 +49,7 @@
         variable["statusType"] = statusType;
         variable["userID"] = id;
         const accessToken = await token();
-        const request = await fetch("http://localhost:8080/v1/graphql", {
+        const request = await fetch("http://https://8080-mrgba-hasuradjangostar-j2rinyyueg0.ws-us67.gitpod.io//v1/graphql", {
             method: "POST",
             headers: { "Content-Type": "application/json", Accept: "application/json", Authorization: "Bearer " + accessToken, },
             body: JSON.stringify({ query: query, variables: variable })
@@ -81,7 +81,7 @@
         `;
         if (searchQuery === ''){ variable["searchQuery"] = null; } else { variable["searchQuery"] = searchQuery; }
         const accessToken = await token();
-        const request = await fetch("http://localhost:8080/v1/graphql", {
+        const request = await fetch("http://https://8080-mrgba-hasuradjangostar-j2rinyyueg0.ws-us67.gitpod.io//v1/graphql", {
             method: "POST",
             headers: { "Content-Type": "application/json", Accept: "application/json", Authorization: "Bearer " + accessToken, },
             body: JSON.stringify({ query: query, variables: variable })
@@ -222,7 +222,7 @@
                             </table>    
                         </div>
                     {:else}
-                        Sign into Hasura (<a target="_new" href="http://localhost:8080/console/data/schema/public">http://localhost:8080/console/data/schema/public</a>) and set your user profile status as <strong>admin</strong> or <strong>manager</strong> (through the <strong>api_profile table</strong>).
+                        Sign into Hasura (<a target="_new" href="http://https://8080-mrgba-hasuradjangostar-j2rinyyueg0.ws-us67.gitpod.io//console/data/schema/public">http://https://8080-mrgba-hasuradjangostar-j2rinyyueg0.ws-us67.gitpod.io//console/data/schema/public</a>) and set your user profile status as <strong>admin</strong> or <strong>manager</strong> (through the <strong>api_profile table</strong>).
                     {/if}
 
             </div>

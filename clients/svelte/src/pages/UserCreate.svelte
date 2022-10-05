@@ -52,7 +52,7 @@
         } else if ( passCheck !== true ){
             errorMessage = "Your passwords must be a strong password. It must contain at least one lowercase character, uppercase character, special character, and number.";
         } else {
-            const request = await fetch("http://localhost:8000/api/user/register/", {
+            const request = await fetch("https://8080-mrgba-hasuradjangostar-j2rinyyueg0.ws-us67.gitpod.io/api/user/register/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

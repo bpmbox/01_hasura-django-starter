@@ -34,11 +34,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_swagger',
     'rest_framework_simplejwt',
     'django_rest_passwordreset',
     'corsheaders',
     'import_export',
     'api.apps.APIConfig',
+    'django_filters', # 追加
+    'drf_yasg', # 追加
+    #'app', # 追加
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True

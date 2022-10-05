@@ -9,7 +9,7 @@ import { token } from './auth.js'
 const cache = new InMemoryCache();
 
 const wsLink = new WebSocketLink({
-    uri: "ws://localhost:8080/v1/graphql",
+    uri: "ws://https://8080-mrgba-hasuradjangostar-j2rinyyueg0.ws-us67.gitpod.io//v1/graphql",
     options: {
         lazy: true,
         reconnect: true,
@@ -25,7 +25,7 @@ const wsLink = new WebSocketLink({
 });
 
 const httpLink = new HttpLink({
-  uri: "http://localhost:8080/v1/graphql",
+  uri: "http://https://8080-mrgba-hasuradjangostar-j2rinyyueg0.ws-us67.gitpod.io//v1/graphql",
   headers: async () => {
     const accessToken = await token();
         return {
