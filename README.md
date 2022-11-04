@@ -2,6 +2,8 @@
 
 A project starter which pairs up the best features of Hasura with Django ❤️
 
+# FastAPI AWS integration
+
 ***(Now with 100% more Svelte client examples)***
 
 The best of Hasura's instant, realtime GraphQL API meshed with Django's built-in auth model and the ability to extend logic across the two services.
